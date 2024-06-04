@@ -33,6 +33,7 @@ services:
 
   express:
     image: bitnami/express:latest
+    command: npm run develop
     ports:
       - '3000:3000'
     environment:
@@ -54,6 +55,9 @@ services:
       - mongo
 
 
+
+
 networks:
   mongo-network:
     driver: bridge
+
