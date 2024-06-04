@@ -1,8 +1,12 @@
 const express = require("express");
 const app = express();
 
+const ideasRouter = require("./routes/ideas");
+app.use("/api/ideas", ideasRouter);
+
 app.get("/", (req, res) => {
-  res.send("Hello World Bülent Morten");
+  res.send({ message : 'Hello World Bülent Morten' });
+  // res.json({ message: "Hello World"});
 });
 
 app.listen(3000, () => {
