@@ -1,0 +1,5 @@
+data/
+data/journal/
+data/WiredTiger.turtle
+data/WiredTiger.wt
+data/journal/WiredTigerLog.0000000004
