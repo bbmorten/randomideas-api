@@ -1,11 +1,12 @@
 ## Dockerfile for building production image.
 ## Consider replacing below rolling tag by a digest or a immutable tag
-FROM bitnami/express:4.19.2
-LABEL maintainer "John Smith <john.smith@acme.com>"
+FROM bitnami/express:latest
+LABEL maintainer "Bulent Morten <bulent@btegitim.com>"
 
 ENV DISABLE_WELCOME_MESSAGE=1
 
-ENV NODE_ENV=production \
+
+ENV NODE_ENV=development \
     PORT=3000
 
 # Skip fetching dependencies and database migrations for production image
@@ -15,9 +16,9 @@ ENV SKIP_DB_WAIT=0 \
     SKIP_BOWER_INSTALL=1
 
 COPY . /app
-RUN sudo chown -R bitnami: /app
+WORKDIR /app
 
 RUN npm install
 
-EXPOSE 3000
-CMD ["npm", "start"]
+EXPOSE ${PORT}
+CMD ["npm", "run", "develop"]
