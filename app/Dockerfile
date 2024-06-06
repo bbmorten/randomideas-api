@@ -15,8 +15,8 @@ ENV SKIP_DB_WAIT=0 \
     SKIP_NPM_INSTALL=1 \
     SKIP_BOWER_INSTALL=1
 
-COPY . /app
 WORKDIR /app
+COPY app/. /app/
 
 RUN npm install
 

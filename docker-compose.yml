@@ -1,6 +1,5 @@
 # Use root/example as user/password credentials
 services:
-
   mongo:
     image: mongo
     restart: always
@@ -34,7 +33,7 @@ services:
       context: .
       dockerfile: ./app/Dockerfile
     ports:
-      - '3000:3000'
+      - "3000:3000"
     environment:
       - PORT=3000
       - NODE_ENV=development
@@ -47,16 +46,29 @@ services:
       - EXPRESS_SKIP_NPM_INSTALL=0
       - EXPRESS_SKIP_BOWER_INSTALL=0
     volumes:
-      - './app:/app'
+      - "./app:/app"
     networks:
       - mongo-network
     depends_on:
       - mongo
 
+  client:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
 
+    ports:
+      - "3001:3000"
+    volumes:
+      - ./client:/usr/src/app
+    # command: npm run dev
 
+    networks:
+      - mongo-network
+
+    depends_on:
+      - express
 
 networks:
   mongo-network:
     driver: bridge
-
